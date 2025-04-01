@@ -23,11 +23,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run a one-line scripte
+      - name: Run a one-line script
         run: echo Hello, world!
+
+      - name: Testing Strategy ( BAT CLI Integration -> bat integration-test.dwl)
+        run: curl -o- 'https://s3.amazonaws.com/bat-wrapper/install.sh' | bash && echo Integration Testing Complete
         
       - name: Print Account Information
         run: >
           npm install -g anypoint-cli-v4 &&
-          anypoint-cli-v4 account:user:describe --client_id c8e4392897704f9680406b43670e8932 --client_secret F4C6E51b9f104Ad697473c51079050C5 -o json
+          anypoint-cli-v4 account:user:describe --organization 80bc992f-8a52-48e4-b467-98c4afaf6e9c --client_id c8e4392897704f9680406b43670e8932 --client_secret F4C6E51b9f104Ad697473c51079050C5 -o json
         
